@@ -20,22 +20,22 @@ function App() {
         </div>
       </nav>
 
-      <section id="home" className="section">
+      <section id="home" className="section fade-in">
         <h2>Home</h2>
         <p>This is the home section.</p>
       </section>
 
-      <section id="drugs" className="section">
+      <section id="drugs" className="section fade-in">
         <h2>Drugs</h2>
         <p>This is the drugs section.</p>
       </section>
 
-      <section id="order-coverage" className="section">
+      <section id="order-coverage" className="section fade-in">
         <h2>Order/Coverage</h2>
         <p>This is the order/coverage section.</p>
       </section>
 
-      <section id="contact-help" className="section">
+      <section id="contact-help" className="section fade-in">
         <h2>Contact/Help</h2>
         <p>This is the contact/help section.</p>
       </section>
