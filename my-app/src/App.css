@@ -1,122 +1,87 @@
-.App {
-  text-align: center;
+/* Global Styles */
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box; /* Ensure padding and borders are included in element's total width and height */
 }
+
 .App {
-  background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+  background: linear-gradient(to bottom, rgba(161, 196, 253, 0.8), rgba(194, 233, 251, 0.8)), 
+              url('/Users/aaryas127/Documents/GitHub/pharmapp/my-app/src/background.jpeg');
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #333;
-  font-family: 'Arial', sans-serif;
+  text-align: center;
 }
 
-.App {
-  background-image: url('/Users/aaryas127/Documents/GitHub/pharmapp/my-app/src/background.jpeg');
-  background-size: cover;
-  background-position: center;
-}
-
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Subtle background */
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-* {
-  font-family: 'Poppins', sans-serif;
-}
-
-
-.button {
-  background-color: #4a90e2;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-
-.button:hover {
-  background-color: #357abd;
-}
-
-.App h1 {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-
-  .button {
-    padding: 8px 16px;
-  }
-}
-
-.App {
-  font-family: 'Arial', sans-serif;
-}
-
+/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between; /* Keeps buttons on the left and icons on the right */
   background-color: #333;
-  padding: 10px;
+  padding: 10px 20px;
   z-index: 100;
 }
 
-.navbar button {
+.logo {
+  height: 40px; /* Adjust height as needed */
+  margin-right: 20px; /* Space between logo and buttons */
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 40px; /* Increase gap between buttons for more spacing */
+}
+
+.nav-buttons button {
   background-color: #4a90e2;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 30px; /* Increased padding for wider buttons */
+  min-width: 140px; /* Ensure buttons are wider */
   border: none;
   border-radius: 5px;
-  margin: 0 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.navbar button:hover {
+.nav-buttons button:hover {
   background-color: #357abd;
 }
 
+/* Icon Styles */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Spacing between icons */
+}
+
+.icon {
+  color: white;
+  font-size: 24px; /* Adjust icon size as needed */
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #4a90e2; /* Change color on hover */
+}
+
+/* Section Styles */
 .section {
   padding: 100px 20px; /* Extra top padding to prevent overlapping with navbar */
   min-height: 100vh;
 }
 
-#home { background-color: #f5f7fa; }
-#about { background-color: #e2f3f5; }
-#features { background-color: #f5e6e8; }
-
-
-
+/* Media Queries */
+@media (max-width: 768px) {
+  .navbar button {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}

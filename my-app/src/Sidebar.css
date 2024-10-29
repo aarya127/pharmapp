@@ -1,0 +1,57 @@
+/* Sidebar container */
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+  
+  /* Sidebar title */
+  .sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  
+  /* Menu item style */
+  .menu-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #444;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #555;
+  }
+  
+  /* Dropdown container */
+  .dropdown {
+    display: none;
+    margin-top: 5px;
+    padding-left: 15px;
+    font-size: 0.9em;
+    color: #ddd;
+  }
+  
+  /* Show the dropdown */
+  .dropdown.show {
+    display: block;
+  }
+  
+  /* Dropdown item style */
+  .dropdown p {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .dropdown p:hover {
+    color: #aaa;
+  }
+  
