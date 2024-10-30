@@ -1,23 +1,39 @@
 const express = require('express');
+const multer = require('multer');
 const cors = require('cors');
+
 const app = express();
-const PORT = 5000; // You can choose any available port
+const PORT = 5000; // Use a different port to avoid conflicts
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Sample data for drugs
-const drugs = [
-  { id: 1, name: "Aspirin", description: "Used to reduce pain and inflammation." },
-  { id: 2, name: "Ibuprofen", description: "Nonsteroidal anti-inflammatory drug." },
-  { id: 3, name: "Acetaminophen", description: "Pain reliever and fever reducer." },
-  // Add more drugs as needed
-];
+// File upload setup
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Make sure this directory exists
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
 
-// Endpoint to get drugs data
-app.get('/api/drugs', (req, res) => {
-  res.json(drugs);
+const upload = multer({ storage });
+
+// Sample upload route
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send('File uploaded successfully');
+});
+
+// GET route for the root path
+app.get('/', (req, res) => {
+  res.send('Welcome to the Express server!'); // You can customize this message
+});
+
+// GET route for /drugs
+app.get('/drugs', (req, res) => {
+  res.send('Welcome to the Drugs page!'); // Customize this as needed
 });
 
 // Start the server
