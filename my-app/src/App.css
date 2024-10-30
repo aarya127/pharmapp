@@ -94,3 +94,36 @@
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+/* About Section Styles */
+.about-section {
+  background-color: #e0f7fa; /* Light cyan background for the About section */
+  padding: 40px 20px; /* Extra padding for a spacious feel */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  display: flex; /* Enable flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between text and image */
+}
+
+.about-section h2 {
+  font-size: 2.5em; /* Larger font size for the title */
+  color: #00796b; /* Darker teal color for the title */
+  margin-bottom: 20px; /* Space below the title */
+  margin-right: 20px; /* Space between text and image */
+}
+
+.about-section p {
+  font-size: 1.2em; /* Slightly larger font size for the paragraphs */
+  color: #555; /* Darker grey for better readability */
+  line-height: 1.6; /* Improved line spacing */
+  margin-right: 20px; /* Additional space between text and image */
+}
+
+/* About Section Image Styles */
+.about-image {
+  max-width: 800px; /* Increased max-width for a larger image */
+  height: auto; /* Keeps the aspect ratio */
+  border-radius: 10px; /* Optional: rounded corners for the image */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: soft shadow for depth */
+}
