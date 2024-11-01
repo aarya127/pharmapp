@@ -1,46 +1,49 @@
 // src/UploadDocument.js
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function UploadDocument() {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadMessage, setUploadMessage] = useState('');
+  const [file, setFile] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState(''); // To show upload success or error messages
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  // Handle file selection
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      setUploadMessage('Please select a file to upload.');
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!file) {
+      setUploadStatus('Please select a file to upload.');
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append('file', file);
 
     try {
-      // Replace this URL with your backend upload endpoint
-      const response = await fetch('YOUR_BACKEND_API_URL/upload', {
-        method: 'POST',
-        body: formData,
+      // Post file to backend
+      const response = await axios.post('http://localhost:5000/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      if (response.ok) {
-        setUploadMessage('File uploaded successfully!');
-      } else {
-        setUploadMessage('File upload failed.');
-      }
+      setUploadStatus(response.data); // Show success message
+      setFile(null); // Clear selected file
     } catch (error) {
-      setUploadMessage('An error occurred while uploading the file.');
+      console.error('Error uploading file:', error);
+      setUploadStatus('File upload failed. Please try again.');
     }
   };
 
   return (
-    <div className="upload-document">
-      <h2>Upload Document</h2>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      {uploadMessage && <p>{uploadMessage}</p>}
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">Upload File</button>
+      </form>
+      {uploadStatus && <p>{uploadStatus}</p>} {/* Show status messages */}
     </div>
   );
 }
