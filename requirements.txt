@@ -1,0 +1,31 @@
+# Web frameworks
+Flask==2.1.2            # Flask for lightweight web applications
+Django==4.0.5           # Django for more robust web applications
+
+# API and HTTP requests
+fastapi==0.78.0         # FastAPI for building APIs with modern Python
+requests==2.27.1        # For making HTTP requests
+
+# File handling and storage
+boto3==1.24.2           # For interacting with AWS services, such as S3 for file storage
+Pillow==9.1.1           # For image processing
+
+# Data processing and machine learning
+numpy==1.22.4           # For numerical computations
+pandas==1.4.2           # For data manipulation
+scikit-learn==1.1.1     # For machine learning
+torch==1.11.0           # For deep learning (PyTorch)
+transformers==4.20.1    # For NLP models, such as using BERT
+
+# OCR for text extraction
+pytesseract==0.3.9      # For extracting text from images
+opencv-python-headless==4.6.0.66 # For image processing, useful in OCR tasks
+
+# Other utilities
+uvicorn==0.18.2         # ASGI server for FastAPI
+gunicorn==20.1.0        # WSGI server for Flask/Django deployment
+python-dotenv==0.20.0   # For environment variable management
+
+# Linting and formatting
+flake8==4.0.1           # For Python code linting
+black==22.3.0           # For code formatting
