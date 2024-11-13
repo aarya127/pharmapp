@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 
 *.jpeg
+
+api_key.txt
