@@ -1,0 +1,12 @@
+/* UploadDocument.css */
+.upload-bubble form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .upload-bubble p {
+    color: green;
+    font-size: 0.9rem;
+  }
+  

@@ -6,9 +6,8 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 5000; // Different port to avoid conflicts
+const PORT = 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -21,10 +20,11 @@ if (!fs.existsSync(uploadDir)) {
 // File upload setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Files are saved to the uploads directory
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname); // Files are saved with their original name
+    const sanitizedFileName = file.originalname.replace(/[^a-zA-Z0-9.]/g, '_'); // Sanitize filename
+    cb(null, sanitizedFileName);
   },
 });
 
@@ -43,12 +43,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Express server!');
 });
 
-// Drugs page route
-app.get('/drugs', (req, res) => {
-  res.send('Welcome to the Drugs page!');
-});
-
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
