@@ -43,6 +43,19 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Express server!');
 });
 
+// Drug information route
+const drugData = [
+  { name: 'Drug 1', details: 'Information about dosage, side effects, etc.' },
+  { name: 'Drug 2', details: 'Information about dosage, side effects, etc.' },
+  { name: 'Drug 3', details: 'Information about dosage, side effects, etc.' },
+];
+
+// Endpoint to get drug information
+app.get('/drug-info', (req, res) => {
+  res.json(drugData);
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
