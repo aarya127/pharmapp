@@ -1,0 +1,139 @@
+/* src/Home.css */
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .home-container h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    animation: slideInFromTop 1s ease-out;
+  }
+  
+  .home-container p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  /* About Us Section */
+  .about-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    animation: slideInFromBottom 1s ease-out;
+  }
+  
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    animation: fadeInUp 1.5s ease-out;
+  }
+  
+  .about-text {
+    max-width: 600px;
+    animation: fadeInLeft 1s ease-out;
+  }
+  
+  .about-text h2 {
+    font-size: 2rem;
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  .about-text p {
+    color: #7f8c8d;
+    line-height: 1.6;
+  }
+  
+  .about-image {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInRight 1s ease-out;
+  }
+  
+  /* Fade-in animation */
+  .fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
