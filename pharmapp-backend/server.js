@@ -23,11 +23,11 @@ if (!fs.existsSync(uploadDir2)) {
 // File upload setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Check if the file is related to the "policy" upload
+    // Check if the file is related to the "policy" upload or "prescription"
     if (req.body.uploadType === 'policy') {
       cb(null, uploadDir2); // Save to uploads2 if it's a policy document
     } else {
-      cb(null, uploadDir); // Default to uploads folder
+      cb(null, uploadDir); // Default to uploads folder for prescription
     }
   },
   filename: (req, file, cb) => {
@@ -38,16 +38,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Upload route
-app.post('/upload', upload.single('file'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded');
+// Upload route for handling two files
+app.post('/upload', upload.fields([
+  { name: 'prescriptionFile', maxCount: 1 },
+  { name: 'policyFile', maxCount: 1 }
+]), (req, res) => {
+  // Check if both files are uploaded
+  if (!req.files || !req.files.prescriptionFile || !req.files.policyFile) {
+    return res.status(400).send('Both prescription and policy files are required');
   }
 
-  const uploadType = req.body.uploadType || 'default'; // If not specified, default uploadType
-  const folder = uploadType === 'policy' ? 'uploads2' : 'uploads';
-
-  res.send(`File uploaded successfully to ${folder}`);
+  res.send('Files uploaded successfully');
 });
 
 // Base route for testing
