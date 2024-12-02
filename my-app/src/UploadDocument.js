@@ -1,3 +1,4 @@
+// src/UploadDocument.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -20,8 +21,9 @@ function UploadDocument({ uploadType = 'default' }) {
     }
 
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('uploadType', uploadType); // Add the uploadType to formData
+    
+    // Dynamically set field name based on the uploadType (either 'prescriptionFile' or 'policyFile')
+    formData.append(uploadType === 'policy' ? 'policyFile' : 'prescriptionFile', file); 
 
     try {
       // Post file to backend
@@ -38,7 +40,7 @@ function UploadDocument({ uploadType = 'default' }) {
   };
 
   return (
-    <div>
+    <div className="upload-bubble">
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Upload File</button>

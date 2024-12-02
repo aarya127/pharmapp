@@ -1,61 +1,44 @@
+// server.js (Backend)
 const express = require('express');
 const multer = require('multer');
-const cors = require('cors');
-const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
-const PORT = 5000;
+const port = 5000;
 
+// Setup CORS to allow cross-origin requests from frontend
 app.use(cors());
-app.use(express.json());
 
-// Ensure the uploads and uploads2 directories exist
-const uploadDir = path.join(__dirname, 'uploads');
-const uploadDir2 = path.join(__dirname, 'uploads2');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
-if (!fs.existsSync(uploadDir2)) {
-  fs.mkdirSync(uploadDir2);
-}
-
-// File upload setup
+// Set up multer storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Check if the file is related to the "policy" upload or "prescription"
-    if (req.body.uploadType === 'policy') {
-      cb(null, uploadDir2); // Save to uploads2 if it's a policy document
-    } else {
-      cb(null, uploadDir); // Default to uploads folder for prescription
-    }
+    cb(null, 'uploads/'); // Save files in the 'uploads' folder
   },
   filename: (req, file, cb) => {
-    const sanitizedFileName = file.originalname.replace(/[^a-zA-Z0-9.]/g, '_'); // Sanitize filename
-    cb(null, sanitizedFileName);
+    const fileExtension = path.extname(file.originalname); // Get file extension
+    cb(null, Date.now() + fileExtension); // Create unique file name
   },
 });
 
 const upload = multer({ storage });
 
-// Upload route for handling two files
+// Handle file uploads with multiple fields (prescriptionFile and policyFile)
 app.post('/upload', upload.fields([
   { name: 'prescriptionFile', maxCount: 1 },
   { name: 'policyFile', maxCount: 1 }
 ]), (req, res) => {
-  // Check if both files are uploaded
-  if (!req.files || !req.files.prescriptionFile || !req.files.policyFile) {
-    return res.status(400).send('Both prescription and policy files are required');
+  if (!req.files) {
+    return res.status(400).send('No files uploaded.');
   }
 
+  console.log('Uploaded files:', req.files); // Log uploaded files
+
+  // Send success response
   res.send('Files uploaded successfully');
 });
 
-// Base route for testing
-app.get('/', (req, res) => {
-  res.send('Welcome to the Express server!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
