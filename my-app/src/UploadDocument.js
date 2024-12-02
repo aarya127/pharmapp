@@ -23,7 +23,7 @@ function UploadDocument({ uploadType = 'default' }) {
     const formData = new FormData();
     
     // Dynamically set field name based on the uploadType (either 'prescriptionFile' or 'policyFile')
-    formData.append(uploadType === 'policy' ? 'policyFile' : 'prescriptionFile', file); 
+    formData.append(uploadType === 'policy' ? 'policyFile' : 'prescriptionFile', file);
 
     try {
       // Post file to backend

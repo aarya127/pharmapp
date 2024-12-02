@@ -8,6 +8,7 @@ import Home from './Home';
 import Drugs from './Drugs';
 import OrderCoverage from './OrderCoverage';
 import ContactHelp from './ContactHelp';
+import User from './User'; // Import User component for login/register
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
           <Route path="/drugs" element={<Drugs />} />
           <Route path="/order-coverage" element={<OrderCoverage />} />
           <Route path="/contact-help" element={<ContactHelp />} />
-          {/* Add routes for robot and user if you have them */}
+          <Route path="/user" element={<User />} /> {/* Add the /user route */}
+          {/* Add routes for robot if you have them */}
         </Routes>
       </div>
     </Router>
