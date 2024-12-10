@@ -123,7 +123,7 @@ app.post('/login', async (req, res) => {
 
 // Search Route for /order-coverage
 app.get('/search', (req, res) => {
-  const query = req.query.query;  // Extract search term from query parameter
+  const query = req.query.query?.toLowerCase();
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -131,8 +131,8 @@ app.get('/search', (req, res) => {
 
   // Perform search in the orders array (replace with database query logic)
   const results = orders.filter(order =>
-    order.name.toLowerCase().includes(query.toLowerCase()) || 
-    order.description.toLowerCase().includes(query.toLowerCase())
+    order.name.toLowerCase().includes(query) || 
+    order.description.toLowerCase().includes(query)
   );
 
   res.status(200).json(results); // Return the search results

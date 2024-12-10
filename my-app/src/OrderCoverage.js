@@ -19,6 +19,10 @@ function OrderCoverage() {
     try {
       const response = await axios.get(`http://localhost:5000/search?query=${query}`);
       setResults(response.data);
+
+      if (response.data.length === 0) {
+        setError('No results found.');
+      }
     } catch (err) {
       setError('Error fetching results.');
     } finally {
@@ -28,14 +32,13 @@ function OrderCoverage() {
 
   return (
     <div>
-      <h1>Order Coverage</h1>
-      
+      <h1>Drug Search Engine</h1>
       <div className="search-container">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search orders..."
+          placeholder="Search for drugs..."
         />
         <button onClick={handleSearch} disabled={loading}>
           {loading ? 'Searching...' : 'Search'}
@@ -45,18 +48,18 @@ function OrderCoverage() {
       {error && <p className="error">{error}</p>}
 
       <div className="results">
-        {results.length === 0 ? (
-          <p>No results found</p>
-        ) : (
+        {results.length > 0 ? (
           <ul>
-            {results.map((item, index) => (
-              <li key={index}>
+            {results.map((item) => (
+              <li key={item.id}>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <p>Price: ${item.price}</p>
               </li>
             ))}
           </ul>
+        ) : (
+          !error && <p>No results found</p>
         )}
       </div>
     </div>
