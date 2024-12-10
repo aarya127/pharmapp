@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import csv
 
 # Load the HTML content from the file
-with open('/Users/aaryas127/Documents/GitHub/pharmapp/db/Prescription Drug List.html', 'r', encoding='utf-8') as file:
+with open('/Users/aaryas127/Documents/GitHub/pharmapp/db/drug_list.html', 'r', encoding='utf-8') as file:
     html_content = file.read()
 
 # Parse the HTML with BeautifulSoup

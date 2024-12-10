@@ -164,3 +164,5 @@ cython_debug/
 *.jpeg
 
 api_key.txt
+
+pharmapp/db/drug_list.html
