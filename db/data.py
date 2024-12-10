@@ -1,36 +1,31 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
-import pandas as pd
+from bs4 import BeautifulSoup
+import csv
 
-# Set up the web driver (requires ChromeDriver)
-driver = webdriver.Chrome()
+# Load the HTML content from the file
+with open('/Users/aaryas127/Documents/GitHub/pharmapp/db/Prescription Drug List.html', 'r', encoding='utf-8') as file:
+    html_content = file.read()
 
-# Open the website
-url = "https://www.pharmacychecker.com/drug-price-comparisons/#"
-driver.get(url)
+# Parse the HTML with BeautifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
 
-# Wait for the page to load fully
-time.sleep(5)
+# Customize the selection based on the actual HTML structure (e.g., table rows, list items)
+# Assuming drugs are listed in a table under a specific class
+drug_list = []
 
-# Locate the drug price table
-drug_data = []
-rows = driver.find_elements(By.XPATH, "//table[contains(@class, 'drug-price-table')]//tr")
-
-for row in rows[1:]:  # Skip the header
-    columns = row.find_elements(By.TAG_NAME, "td")
+# Example: if drugs are in <tr> within a <table>
+for row in soup.find_all('tr'):
+    columns = row.find_all('td')  # Assuming drug name is in one of the <td> cells
     if columns:
-        drug_name = columns[0].text
-        price = columns[1].text
-        drug_data.append({"Drug Name": drug_name, "Price": price})
+        # Adjust the index based on which cell contains the drug name
+        drug_name = columns[0].get_text(strip=True)
+        drug_list.append(drug_name)
 
-# Close the browser
-driver.quit()
+# Save the drug names to a CSV file
+output_file = '/Users/aaryas127/Documents/GitHub/pharmapp/db/drug_prices.csv'
+with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['Drug Name'])  # Header row
+    for drug in drug_list:
+        writer.writerow([drug])
 
-# Convert to a DataFrame
-df = pd.DataFrame(drug_data)
-print(df)
-
-# Save to CSV
-df.to_csv("drug_prices.csv", index=False)
+print(f"Drugs saved to {output_file}")
